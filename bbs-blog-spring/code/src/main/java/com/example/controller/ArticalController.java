@@ -1,0 +1,66 @@
+package com.example.controller;
+
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.common.Result;
+import com.example.entity.Artical;
+import com.example.entity.User;
+import com.example.service.ArticalService;
+import org.apache.commons.compress.utils.Lists;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/artical")
+public class ArticalController {
+    @Resource
+    private ArticalService articalService;
+    @Resource
+    private HttpServletRequest request;
+
+    public User getUser() {
+        return (User) request.getSession().getAttribute("user");
+    }
+
+    @PostMapping
+    public Result<?> save(@RequestBody Artical artical) {
+        artical.setUsername(getUser().getUsername());
+        artical.setTime(DateUtil.formatDateTime(new Date()));
+        return Result.success(articalService.save(artical));
+    }
+
+    @PutMapping
+    public Result<?> update(@RequestBody Artical artical) {
+        artical.setUsername(getUser().getUsername());
+        artical.setTime(DateUtil.formatDateTime(new Date()));
+        return Result.success(articalService.updateById(artical));
+    }
+
+    @DeleteMapping("/{id}")
+    public Result<?> delete(@PathVariable Long id) {
+        articalService.removeById(id);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result<?> findById(@PathVariable Long id) {
+        return Result.success(articalService.getById(id));
+    }
+
+    @GetMapping
+    public Result<?> findAll() {
+        List<Artical> a = articalService.list();
+        Collections.reverse(a);
+        return Result.success(a);
+    }
+
+
+}
