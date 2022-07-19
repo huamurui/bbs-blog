@@ -11,4 +11,6 @@ import java.util.List;
 public interface ArticalMapper extends BaseMapper<Artical> {
 
     List<Artical> searchByWord(String keyword);
+
+    List<Artical> searchByUsername(String thename);
 }

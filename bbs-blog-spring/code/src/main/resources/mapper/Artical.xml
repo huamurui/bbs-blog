@@ -6,4 +6,9 @@
         Select * from t_artical where
             description like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%')
     </select>
+
+    <select id="searchByUsername" parameterType="String" resultType="com.example.entity.Artical">
+        Select * from t_artical where #{thename}=t_artical.username
+    </select>
+
 </mapper>

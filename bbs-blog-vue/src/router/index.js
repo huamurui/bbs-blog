@@ -12,6 +12,7 @@ import log_com from "@/components/sign/log_com";
 import sign_up from "@/components/sign/sign-up";
 import sign_in from "@/components/sign/sign-in";
 import search_tag_com from "@/components/front/search_tag_com";
+import personal_com from "@/components/front/personal_com";
 
 Vue.use(Router);
 
@@ -23,7 +24,8 @@ export default new Router({
     routes:[
         // {path:"/",name:"Main",component:Main},
         {path:"/home",name:"home_com",component:home_com},
-        {path:"/detail",name:"detail_com",component:detail_com},
+        {path:"/detail/:id",name:"detail_com",component:detail_com},
+        {path:"/personal/:username",name:"personal_com",component:personal_com},
         {path:"/publish",name:"publish_com",component:publish_com},
         {path:"/search",name:"search_tag_com",component:search_tag_com},
         {path:"/log",name:"log_com",component:log_com,

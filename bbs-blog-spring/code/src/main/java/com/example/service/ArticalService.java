@@ -16,5 +16,10 @@ public class ArticalService extends ServiceImpl<ArticalMapper, Artical> {
         System.out.println(keyword);
         return articalMapper.searchByWord(keyword);
     }
+
+    public List<Artical> searchByUsername(String thename) {
+        System.out.println(thename);
+        return articalMapper.searchByUsername(thename);
+    }
 }
 

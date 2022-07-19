@@ -61,5 +61,8 @@ public class ArticalController {
         System.out.println(keyword);
         return articalService.searchByWord(keyword);
     }
-
+    @GetMapping("/personal")
+    public List<Artical> personal(String thename){
+        return articalService.searchByUsername(thename);
+    }
 }

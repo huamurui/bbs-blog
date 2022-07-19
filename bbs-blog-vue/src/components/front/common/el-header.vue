@@ -8,11 +8,11 @@
                 <a >博客平台</a>
               </div>
             </el-col>
-            <el-col :span="9" :default-active="'2'">
+            <el-col :span="9" >
               <div style="display: flex">
                 <el-menu
                     router
-                    :default-active="'2'"
+                    :default-active="$route.path"
                     class="el-menu-demo"
                     mode="horizontal"
                     background-color="#b3d4fc"
