@@ -114,12 +114,6 @@ public class UserController {
         return Result.success(userService.list());
     }
 
-    @GetMapping("/page")
-    public Result<IPage<User>> findPage(@RequestParam(required = false, defaultValue = "") String name,
-                                        @RequestParam(required = false, defaultValue = "1") Integer pageNum,
-                                        @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
-        return Result.success(userService.page(new Page<>(pageNum, pageSize), Wrappers.<User>lambdaQuery().like(User::getUsername, name).orderByDesc(User::getId)));
-    }
 
     @GetMapping("/export")
     public void export(HttpServletResponse response) throws IOException {

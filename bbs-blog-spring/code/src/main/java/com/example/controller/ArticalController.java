@@ -1,15 +1,10 @@
 package com.example.controller;
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.common.Result;
 import com.example.entity.Artical;
 import com.example.entity.User;
 import com.example.service.ArticalService;
-import org.apache.commons.compress.utils.Lists;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -61,6 +56,10 @@ public class ArticalController {
         Collections.reverse(a);
         return Result.success(a);
     }
-
+    @GetMapping("/search")
+    public List<Artical> search(String keyword) {
+        System.out.println(keyword);
+        return articalService.searchByWord(keyword);
+    }
 
 }

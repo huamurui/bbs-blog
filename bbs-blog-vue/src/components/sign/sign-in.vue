@@ -62,6 +62,7 @@ export default {
         if (res.data.code === '0') {
           this.$message({
             message: "登录成功",
+            showClose: true,
             type: "success"
           });
           sessionStorage.setItem("user", JSON.stringify(res.data.data));

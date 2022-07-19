@@ -14,10 +14,8 @@ import 'tinymce/plugins/link';
 import 'tinymce/plugins/code';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/lists';
-// import 'tinymce/plugins/contextmenu';
+import "tinymce/plugins/image";
 import 'tinymce/plugins/wordcount';
-// import 'tinymce/plugins/colorpicker';
-// import 'tinymce/plugins/textcolor';
 
 export default {
   name: "tinymce-editor",
@@ -69,6 +67,12 @@ export default {
             "微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;",
         branding: false,//不显示富文本支持方
         contextmenu: "undo redo | cut copy paste pastetext | selectall table", // 富文本右键菜单
+        //此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
+        //如需ajax上传可参考https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_handler
+        images_upload_handler: (blobInfo, success) => {
+          const img = "data:image/jpeg;base64," + blobInfo.base64();
+          success(img);
+        }
       },
       content: this.value
     };
